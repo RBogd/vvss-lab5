@@ -67,6 +67,11 @@
             <version>5.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -75,20 +80,20 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
-                    <skip>true</skip>
+                    <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
+                    <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
                     <includes>
                         <include>**/*Test.java</include>
                         <include>**/Test*.java</include>
                         <include>**/When*.java</include>
                         <include>**/*Story.java</include>
                     </includes>
-                    <argLine>-Xmx512m</argLine>
                 </configuration>
                 <executions>
                     <execution>
