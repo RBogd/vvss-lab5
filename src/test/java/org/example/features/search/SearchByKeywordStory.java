@@ -41,6 +41,20 @@ public class SearchByKeywordStory {
                                    // An edible fruit produced by the pear tree, similar to an apple but typically elongated towards the stem.
     }
 
+    @Test
+    public void searching_by_keyword_orange_should_display_the_corresponding_article() {
+        anna.is_the_home_page();
+        anna.looks_for("orange");
+        anna.should_see_definition("A round sweet and juicy fruit with a tough bright reddish-yellow rind.");
+    }
+
+    @Test
+    public void searching_by_keyword_strawberry_should_display_the_corresponding_article() {
+        anna.is_the_home_page();
+        anna.looks_for("strawberry");
+        anna.should_see_definition("A sweet soft red fruit with a seed-studded surface.");
+    }
+
     @Pending @Test
     public void searching_by_ambiguious_keyword_should_display_the_disambiguation_page() {
     }
