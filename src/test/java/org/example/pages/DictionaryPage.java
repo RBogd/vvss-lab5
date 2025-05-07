@@ -12,8 +12,8 @@ import net.thucydides.core.pages.PageObject;
 
 import java.util.List;
 
-//@DefaultUrl("http://en.wiktionary.org/wiki/Wiktionary")
-@DefaultUrl("http://www.cs.ubbcluj.ro")
+@DefaultUrl("http://en.wiktionary.org/wiki/Wiktionary")
+//@DefaultUrl("http://www.cs.ubbcluj.ro")
 public class DictionaryPage extends PageObject {
 
     @FindBy(id="s")
@@ -37,7 +37,7 @@ public class DictionaryPage extends PageObject {
 
         WebElementFacade searchList = find(By.className("post-wrap"));
        // return searchList.findElements(By.id("post-57228")).stream().map(element->element.getText()).collect(Collectors.toList());
-        return searchList.findElements(By.className("post")).stream().map(element->element.getText()).collect(Collectors.toList());
+        return searchList.findElements(By.className("post")).stream().map(WebElement::getText).collect(Collectors.toList());
 
         /*
         WebElementFacade definitionList = find(By.tagName("ol"));
