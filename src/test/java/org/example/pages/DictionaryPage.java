@@ -2,6 +2,7 @@ package org.example.pages;
 
 import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import net.serenitybdd.core.pages.WebElementFacade;
 import java.util.stream.Collectors;
@@ -12,32 +13,25 @@ import net.thucydides.core.pages.PageObject;
 
 import java.util.List;
 
-//@DefaultUrl("http://en.wiktionary.org/wiki/Wiktionary")
-@DefaultUrl("http://www.cs.ubbcluj.ro")
+@DefaultUrl("http://en.wiktionary.org/wiki/Wiktionary")
+//@DefaultUrl("http://www.cs.ubbcluj.ro")
 public class DictionaryPage extends PageObject {
 
-    @FindBy(id="s")
-    private WebElementFacade searchTerms;
+    @FindBy(xpath="//*[@id=\"p-search\"]/a/span[1]")
+    private WebElementFacade searchIcon;
 
-    @FindBy(name="go")
-    private WebElementFacade lookupButton;
+    @FindBy(id="p-search")
+    private WebElementFacade searchBox;
 
     public void enter_keywords(String keyword) {
-
-        //searchTerms.type(keyword);
-        searchTerms.typeAndEnter(keyword);
-    }
-
-    public void lookup_terms() {
-
-        //lookupButton.click();
+        searchIcon.click();
+        searchBox.sendKeys(keyword);
+        searchBox.sendKeys(Keys.ENTER);
     }
 
     public List<String> getDefinitions() {
-
-        WebElementFacade searchList = find(By.className("post-wrap"));
-       // return searchList.findElements(By.id("post-57228")).stream().map(element->element.getText()).collect(Collectors.toList());
-        return searchList.findElements(By.className("post")).stream().map(element->element.getText()).collect(Collectors.toList());
+        WebElementFacade searchList = find(By.xpath("//*[@id=\"mw-content-text\"]/div[1]/ol[1]"));
+        return searchList.findElements(By.xpath(".//li")).stream().map(WebElement::getText).collect(Collectors.toList());
 
         /*
         WebElementFacade definitionList = find(By.tagName("ol"));

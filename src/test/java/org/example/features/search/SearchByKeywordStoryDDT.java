@@ -35,7 +35,7 @@ public class SearchByKeywordStoryDDT {
     @Test
     public void searchWikiByKeywordTestDDT() {
 
-        endUser.is_the_home_page();
+        endUser.is_at_the_home_page();
         endUser.looks_for(getName());
         endUser.should_see_definition(getDefinition());
     }
