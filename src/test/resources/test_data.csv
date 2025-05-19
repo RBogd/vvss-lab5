@@ -1,0 +1,5 @@
+search_keyword, search_in_page,expected_result
+apple, A common, firm, round fruit produced by a tree of the genus Malus. , true
+pear,  An edible fruit produced by the pear tree, similar to an apple but typically elongated towards the stem., true
+orange, (countable) An evergreen tree of the genus Citrus such as Citrus sinensis which yields orange, true
+strawberry,  The sweet, usually red, edible accessory fruit of certain plants of the genus Fragaria., true

@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom("src/test/resources/WikiTestDataUBB.csv")
+@UseTestDataFrom("src/test/resources/test_data.csv")
 public class SearchByKeywordStoryDDT {
     @Managed(uniqueSession = true)
     public WebDriver webdriver;
