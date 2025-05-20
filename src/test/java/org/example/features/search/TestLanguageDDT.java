@@ -54,7 +54,7 @@ public class TestLanguageDDT {
     @Issue("#WIKI-1")
     @Test
     public void seeIfLanguageChanges() {
-        endUser.is_at_the_home_page();
+        endUser.isAtWiktionaryMainPage();
         endUser.changesLanguage(language);
         if(expectedResult != 0) {
             endUser.shouldSeeTextInRightLanguage(textToCheck);

@@ -12,27 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @DefaultUrl("https://www.wiktionary.org")
-public class DictionaryPage extends PageObject {
-
-    @FindBy(id = "p-search")
-    private WebElementFacade searchBox;
-
-    public void enter_keywords(String keyword) {
-        searchBox.click();
-        searchBox.sendKeys(keyword);
-        searchBox.sendKeys(Keys.ENTER);
-    }
-
-    public List<String> getDefinitions() {
-        WebElementFacade searchList = find(By.xpath("//*[@id=\"mw-content-text\"]/div[1]/ol[1]"));
-        return searchList.findElements(By.xpath(".//li")).stream().map(WebElement::getText).collect(Collectors.toList());
-        /*
-        WebElementFacade definitionList = find(By.tagName("ol"));
-        return definitionList.findElements(By.tagName("li")).stream()
-                .map( element -> element.getText() )
-                .collect(Collectors.toList());
-      */
-    }
+public class WiktionaryMainPage extends PageObject {
     public void clickLanguage(String language) {
         WebElementFacade readWikiInYourLang = find(By.id("js-lang-list-button"));
         readWikiInYourLang.waitUntilClickable().click();

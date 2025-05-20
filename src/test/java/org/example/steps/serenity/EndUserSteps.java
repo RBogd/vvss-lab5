@@ -1,6 +1,7 @@
 package org.example.steps.serenity;
 
-import org.example.pages.DictionaryPage;
+import org.example.pages.WiktionaryDefinitions;
+import org.example.pages.WiktionaryMainPage;
 import net.thucydides.core.annotations.Step;
 
 import static org.hamcrest.CoreMatchers.not;
@@ -10,39 +11,44 @@ import static org.hamcrest.Matchers.hasItem;
 
 public class EndUserSteps {
 
-    DictionaryPage dictionaryPage;
+    WiktionaryMainPage wiktionaryMainPage;
+    WiktionaryDefinitions wiktionaryDefinitions;
 
     @Step
-    public void should_see_definition(String definition) {
-        assertThat(dictionaryPage.getDefinitions(), hasItem(containsString(definition)));
+    public void isAtWiktionaryDefinitionsPage() {
+        wiktionaryDefinitions.open();
     }
+    @Step
+    public void searchesWiktionary(String keyword) {
+        wiktionaryDefinitions.enter_keywords(keyword);
+    }
+    @Step
+    public void shouldSeeDefinition(String definition) {
+        assertThat(wiktionaryDefinitions.getDefinitions(), hasItem(containsString(definition)));
+    }
+
     @Step public void shouldNotSeeDefinition(String definition) {
-        assertThat(dictionaryPage.getDefinitions(), not(hasItem(containsString(definition))));
+        assertThat(wiktionaryDefinitions.getDefinitions(), not(hasItem(containsString(definition))));
     }
 
     @Step
-    public void is_at_the_home_page() {
-        dictionaryPage.open();
-    }
-
-    @Step
-    public void looks_for(String keyword) {
-        dictionaryPage.enter_keywords(keyword);
+    public void isAtWiktionaryMainPage() {
+        wiktionaryMainPage.open();
     }
 
     @Step
     public void changesLanguage(String language) {
-        dictionaryPage.clickLanguage(language);
+        wiktionaryMainPage.clickLanguage(language);
     }
 
     @Step
     public void shouldSeeTextInRightLanguage(String expectedText) {
-        assertThat(dictionaryPage.getText(), containsString(expectedText));
+        assertThat(wiktionaryMainPage.getText(), containsString(expectedText));
     }
 
     @Step
     public void shouldNotSeeTextInRightLanguage(String expectedText) {
-        assertThat(dictionaryPage.getText(), not(containsString(expectedText)));
+        assertThat(wiktionaryMainPage.getText(), not(containsString(expectedText)));
     }
 
 }

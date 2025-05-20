@@ -5,7 +5,6 @@ import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Issue;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
-import net.thucydides.junit.annotations.Qualifier;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 import org.example.steps.serenity.EndUserSteps;
 import org.junit.Before;
@@ -50,11 +49,11 @@ public class TestSearchByKeywordStoryDDT {
     @Issue("#WIKI-1")
     @Test
     public void searchWikiByKeywordTestDDT() {
-        endUser.is_at_the_home_page();
-        endUser.looks_for(searchedTerm);
+        endUser.isAtWiktionaryDefinitionsPage();
+        endUser.searchesWiktionary(searchedTerm);
         System.out.println("Expected result: " + expectedResult);
         if (expectedResult != 0) {
-            endUser.should_see_definition(shouldFind);
+            endUser.shouldSeeDefinition(shouldFind);
         } else {
             endUser.shouldNotSeeDefinition(shouldFind);
         }
