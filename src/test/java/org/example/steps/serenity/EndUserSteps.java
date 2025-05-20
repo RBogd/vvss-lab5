@@ -16,6 +16,9 @@ public class EndUserSteps {
     public void should_see_definition(String definition) {
         assertThat(dictionaryPage.getDefinitions(), hasItem(containsString(definition)));
     }
+    @Step public void shouldNotSeeDefinition(String definition) {
+        assertThat(dictionaryPage.getDefinitions(), not(hasItem(containsString(definition))));
+    }
 
     @Step
     public void is_at_the_home_page() {

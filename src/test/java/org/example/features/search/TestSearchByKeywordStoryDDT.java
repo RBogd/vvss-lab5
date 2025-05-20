@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value = "src/test/resources/test_data.csv", separator = ';')
+@UseTestDataFrom(value = "src/test/resources/wiki_search_test_data.csv", separator = ';')
 public class TestSearchByKeywordStoryDDT {
     @Managed(uniqueSession = true)
     public WebDriver webdriver;
@@ -24,6 +24,7 @@ public class TestSearchByKeywordStoryDDT {
 
     private String searchedTerm;
     private String shouldFind;
+    private int expectedResult;
 
     public void setSearchedTerm(String searchedTerm) {
         this.searchedTerm = searchedTerm;
@@ -33,9 +34,8 @@ public class TestSearchByKeywordStoryDDT {
         this.shouldFind = shouldFind;
     }
 
-    @Qualifier
-    public String getQualifier() {
-        return searchedTerm + "=>" + shouldFind;
+    public void setExpectedResult(int expectedResult) {
+        this.expectedResult = expectedResult;
     }
 
     @Before
@@ -52,6 +52,11 @@ public class TestSearchByKeywordStoryDDT {
     public void searchWikiByKeywordTestDDT() {
         endUser.is_at_the_home_page();
         endUser.looks_for(searchedTerm);
-        endUser.should_see_definition(shouldFind);
+        System.out.println("Expected result: " + expectedResult);
+        if (expectedResult != 0) {
+            endUser.should_see_definition(shouldFind);
+        } else {
+            endUser.shouldNotSeeDefinition(shouldFind);
+        }
     }
 }
