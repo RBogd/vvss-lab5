@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom(value = "src/test/resources/wiki_change_language_data.csv", separator = ';')
+@UseTestDataFrom(value = "src/test/resources/wiki_change_language_data.csv")
 public class TestLanguageDDT {
     @Managed(uniqueSession = true)
     public WebDriver webdriver;
@@ -46,6 +46,6 @@ public class TestLanguageDDT {
     public void seeIfLanguageChanges() {
         endUser.is_at_the_home_page();
         endUser.changesLanguage(language);
-        endUser.shouldSeeHugeText(expectedText);
+        endUser.shouldSeeTextInRightLanguage(expectedText);
     }
 }

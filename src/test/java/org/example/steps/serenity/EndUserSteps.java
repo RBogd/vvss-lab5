@@ -36,8 +36,8 @@ public class EndUserSteps {
     }
 
     @Step
-    public void shouldSeeHugeText(String expectedText) {
-        assertThat(dictionaryPage.getHugeText(), containsString(expectedText));
+    public void shouldSeeTextInRightLanguage(String expectedText) {
+        assertThat(dictionaryPage.getText(), containsString(expectedText));
     }
 
 }

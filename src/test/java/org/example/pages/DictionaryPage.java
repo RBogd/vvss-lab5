@@ -40,8 +40,8 @@ public class DictionaryPage extends PageObject {
         languageLink.waitUntilClickable().click();
     }
 
-    public String getHugeText() {
-        WebElementFacade hugeText = find(By.xpath("//*[@id=\"mwCw\"]"));
+    public String getText() {
+        WebElementFacade hugeText = find(By.xpath("//*[@id=\"vector-page-tools-dropdown-label\"]/span"));
         return hugeText.getText();
     }
 }
