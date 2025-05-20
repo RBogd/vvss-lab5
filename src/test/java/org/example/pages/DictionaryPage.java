@@ -34,27 +34,14 @@ public class DictionaryPage extends PageObject {
       */
     }
 
-    @FindBy(id = "skin-client-pref-skin-theme-value-night")
-    public WebElementFacade darkmodeButton;
-
-    public void makeDarkmode(){
-        darkmodeButton.click();
+    public void changeLanguage(String language) {
+        WebElementFacade changeLanguageButton = find(By.id("p-lang-btn-checkbox"));
+        changeLanguageButton.waitUntilClickable().click();
     }
 
-    @FindBy(id = "skin-client-pref-skin-theme-value-day")
-    public WebElementFacade lightmodeButton;
-
-    public void makeLightmode(){
-        lightmodeButton.click();
-    }
-
-    @FindBy(tagName = "body")
-    private WebElementFacade body;
-
-    public String getBodyColor() {
-        return body.getCssValue("color");
-    }
-    public String getBodyBackgroundColor() {
-        return body.getCssValue("background-color");
+    @FindBy(xpath = "//*[@id=\"mwBA\"]")
+    private WebElementFacade langaugeSpecificText;
+    public String getTitleInLanguage() {
+        return langaugeSpecificText.getText();
     }
 }

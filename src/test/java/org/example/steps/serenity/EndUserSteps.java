@@ -30,25 +30,14 @@ public class EndUserSteps {
         dictionaryPage.enter_keywords(keyword);
     }
 
-    @Step public void makeDarkmode() {
-        dictionaryPage.makeDarkmode();
-    }
 
     @Step
-    public void makeLightmode() {
-        dictionaryPage.makeLightmode();
+    public void changeLanguage(String language) {
+        dictionaryPage.changeLanguage(language);
+    }
+    @Step
+    public void shouldSeeLanguage(String language) {
+        assertThat(dictionaryPage.getTitleInLanguage(), containsString(language));
     }
 
-    @Step public void shouldSeeLightmode() {
-        String bodyColor = dictionaryPage.getBodyColor();
-        String bodyBackgroundColor = dictionaryPage.getBodyBackgroundColor();
-        assertThat(bodyColor, containsString("#202122"));
-        assertThat(bodyBackgroundColor, containsString("#f8f9fa"));
-    }
-    @Step public void shouldSeeDarkmode() {
-        String bodyColor = dictionaryPage.getBodyColor();
-        String bodyBackgroundColor = dictionaryPage.getBodyBackgroundColor();
-        assertThat(bodyColor, containsString("#eaecf0"));
-        assertThat(bodyBackgroundColor, containsString("#202122"));
-    }
 }
