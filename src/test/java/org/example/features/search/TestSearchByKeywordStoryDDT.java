@@ -13,46 +13,35 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 @RunWith(SerenityParameterizedRunner.class)
-@UseTestDataFrom("src/test/resources/test_data.csv")
-public class SearchByKeywordStoryDDT {
+@UseTestDataFrom(value = "src/test/resources/test_data.csv", separator = ';')
+public class TestSearchByKeywordStoryDDT {
     @Managed(uniqueSession = true)
     public WebDriver webdriver;
-
 
     @Steps
     public EndUserSteps endUser;
 
-    public String name;
-    public String definition;
+    private String searchedTerm;
+    private String shouldFind;
+
+    public void setSearchedTerm(String searchedTerm) {
+        this.searchedTerm = searchedTerm;
+    }
+
+    public void setShouldFind(String shouldFind) {
+        this.shouldFind = shouldFind;
+    }
 
     @Qualifier
     public String getQualifier() {
-        return name;
+        return searchedTerm + "=>" + shouldFind;
     }
-
 
     @Issue("#WIKI-1")
     @Test
     public void searchWikiByKeywordTestDDT() {
-
         endUser.is_at_the_home_page();
-        endUser.looks_for(getName());
-        endUser.should_see_definition(getDefinition());
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDefinition() {
-        return definition;
-    }
-
-    public void setDefinition(String definition) {
-        this.definition = definition;
+        endUser.looks_for(searchedTerm);
+        endUser.should_see_definition(shouldFind);
     }
 }
