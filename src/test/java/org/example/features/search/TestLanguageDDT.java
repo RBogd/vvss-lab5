@@ -12,6 +12,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom(value = "src/test/resources/wiki_change_language_data.csv")
 public class TestLanguageDDT {
@@ -22,15 +24,23 @@ public class TestLanguageDDT {
     public EndUserSteps endUser;
 
     private String language;
-    private String expectedText;
+    private String textToCheck;
+
+    private int expectedResult;
 
     public void setLanguage(String language) {
         this.language = language;
     }
 
-    public void setExpectedText(String expectedText) {
-        this.expectedText = expectedText;
+    public void setTextToCheck(String textToCheck) {
+        this.textToCheck = textToCheck;
     }
+
+    public void setExpectedResult(int expectedResult) {
+        this.expectedResult = expectedResult;
+    }
+
+
 
     @Before
     public void maximizeWindow() {
@@ -46,6 +56,10 @@ public class TestLanguageDDT {
     public void seeIfLanguageChanges() {
         endUser.is_at_the_home_page();
         endUser.changesLanguage(language);
-        endUser.shouldSeeTextInRightLanguage(expectedText);
+        if(expectedResult != 0) {
+            endUser.shouldSeeTextInRightLanguage(textToCheck);
+        } else {
+            endUser.shouldNotSeeTextInRightLanguage(textToCheck);
+        }
     }
 }

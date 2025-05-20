@@ -40,4 +40,9 @@ public class EndUserSteps {
         assertThat(dictionaryPage.getText(), containsString(expectedText));
     }
 
+    @Step
+    public void shouldNotSeeTextInRightLanguage(String expectedText) {
+        assertThat(dictionaryPage.getText(), not(containsString(expectedText)));
+    }
+
 }
