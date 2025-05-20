@@ -34,18 +34,22 @@ public class DictionaryPage extends PageObject {
       */
     }
 
+    @FindBy(id = "vector-appearance-dropdown-checkbox")
+    public WebElementFacade changePrefferencesButton;
     @FindBy(id = "skin-client-pref-skin-theme-value-night")
     public WebElementFacade darkmodeButton;
 
     public void makeDarkmode(){
-        darkmodeButton.click();
+        changePrefferencesButton.waitUntilClickable().click();
+        darkmodeButton.waitUntilClickable().click();
     }
 
     @FindBy(id = "skin-client-pref-skin-theme-value-day")
     public WebElementFacade lightmodeButton;
 
     public void makeLightmode(){
-        lightmodeButton.click();
+        changePrefferencesButton.waitUntilClickable().click();
+        lightmodeButton.waitUntilClickable().click();
     }
 
     @FindBy(tagName = "body")

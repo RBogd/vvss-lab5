@@ -32,21 +32,21 @@ public class TestDarkmodeDDT {
     public void setAction(int action) {
         this.action = action;
     }
-    @Before
-    public void maximizeWindow() {
-//        ca altfel nu se vede nimic din ce avem nevoie gen, sa nu faci windwu inapoi mic ca iara n-o sa mearga
-        webdriver.manage().window().maximize();
 
-        // Optional fallback in case .maximize() is inconsistent
-        // driver.manage().window().setSize(new Dimension(1440, 900));
-    }
+//    @Before
+//    public void maximizeWindow() {
+////        ca altfel nu se vede nimic din ce avem nevoie gen, sa nu faci windwu inapoi mic ca iara n-o sa mearga
+//        webdriver.manage().window().maximize();
+//
+//        // Optional fallback in case .maximize() is inconsistent
+//        // driver.manage().window().setSize(new Dimension(1440, 900));
+//    }
 
     @Issue("#WIKI-1")
     @Test
     public void searchWikiByKeywordTestDDT() {
         endUser.is_at_the_home_page();
         System.out.println("action to take : " + action);
-        System.out.println(webdriver.getPageSource());
 
         if (action ==  1) {
             endUser.makeDarkmode();
