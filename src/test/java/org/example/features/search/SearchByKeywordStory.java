@@ -15,7 +15,7 @@ import org.example.steps.serenity.EndUserSteps;
 @RunWith(SerenityRunner.class)
 public class SearchByKeywordStory {
 
-    @Managed(uniqueSession = true)
+    @Managed(uniqueSession = true )
     public WebDriver webdriver;
 
     @Steps
