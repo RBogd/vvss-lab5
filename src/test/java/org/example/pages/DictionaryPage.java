@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@DefaultUrl("http://en.wiktionary.org/wiki/Wiktionary")
+@DefaultUrl("https://www.wiktionary.org")
 public class DictionaryPage extends PageObject {
 
     @FindBy(id = "p-search")
@@ -33,5 +33,15 @@ public class DictionaryPage extends PageObject {
                 .collect(Collectors.toList());
       */
     }
+    public void clickLanguage(String language) {
+        WebElementFacade readWikiInYourLang = find(By.id("js-lang-list-button"));
+        readWikiInYourLang.waitUntilClickable().click();
+        WebElementFacade languageLink = find(By.cssSelector("a[lang='" + language + "']"));
+        languageLink.waitUntilClickable().click();
+    }
 
+    public String getHugeText() {
+        WebElementFacade hugeText = find(By.xpath("//*[@id=\"mwCw\"]"));
+        return hugeText.getText();
+    }
 }

@@ -30,4 +30,14 @@ public class EndUserSteps {
         dictionaryPage.enter_keywords(keyword);
     }
 
+    @Step
+    public void changesLanguage(String language) {
+        dictionaryPage.clickLanguage(language);
+    }
+
+    @Step
+    public void shouldSeeHugeText(String expectedText) {
+        assertThat(dictionaryPage.getHugeText(), containsString(expectedText));
+    }
+
 }
