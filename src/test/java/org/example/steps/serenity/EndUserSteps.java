@@ -26,4 +26,26 @@ public class EndUserSteps {
     public void looks_for(String keyword) {
         dictionaryPage.enter_keywords(keyword);
     }
+
+    @Step public void makeDarkmode() {
+        dictionaryPage.makeDarkmode();
+    }
+
+    @Step
+    public void makeLightmode() {
+        dictionaryPage.makeLightmode();
+    }
+
+    @Step public void checkIfColorsLight() {
+        String bodyColor = dictionaryPage.getBodyColor();
+        String bodyBackgroundColor = dictionaryPage.getBodyBackgroundColor();
+        assertThat(bodyColor, containsString("#202122"));
+        assertThat(bodyBackgroundColor, containsString("#f8f9fa"));
+    }
+    @Step public void checkIfColorsDark() {
+        String bodyColor = dictionaryPage.getBodyColor();
+        String bodyBackgroundColor = dictionaryPage.getBodyBackgroundColor();
+        assertThat(bodyColor, containsString("#eaecf0"));
+        assertThat(bodyBackgroundColor, containsString("#202122"));
+    }
 }
