@@ -35,14 +35,14 @@ public class DictionaryPage extends PageObject {
     }
 
     @FindBy(id = "skin-client-pref-skin-theme-value-night")
-    private WebElementFacade darkmodeButton;
+    public WebElementFacade darkmodeButton;
 
     public void makeDarkmode(){
         darkmodeButton.click();
     }
 
     @FindBy(id = "skin-client-pref-skin-theme-value-day")
-    private WebElementFacade lightmodeButton;
+    public WebElementFacade lightmodeButton;
 
     public void makeLightmode(){
         lightmodeButton.click();

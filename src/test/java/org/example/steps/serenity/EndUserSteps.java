@@ -39,13 +39,13 @@ public class EndUserSteps {
         dictionaryPage.makeLightmode();
     }
 
-    @Step public void checkIfColorsLight() {
+    @Step public void shouldSeeLightmode() {
         String bodyColor = dictionaryPage.getBodyColor();
         String bodyBackgroundColor = dictionaryPage.getBodyBackgroundColor();
         assertThat(bodyColor, containsString("#202122"));
         assertThat(bodyBackgroundColor, containsString("#f8f9fa"));
     }
-    @Step public void checkIfColorsDark() {
+    @Step public void shouldSeeDarkmode() {
         String bodyColor = dictionaryPage.getBodyColor();
         String bodyBackgroundColor = dictionaryPage.getBodyBackgroundColor();
         assertThat(bodyColor, containsString("#eaecf0"));
